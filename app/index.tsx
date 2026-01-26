@@ -17,14 +17,21 @@ export default function Index() {
         {id: 4, title: 'React', isDone: true},
         {id: 5, title: 'React Native', isDone: false},
     ]);
-    const addTask = () => {
+    const addTaskHandler = () => {
         if (value) {
-            const id = tasks.length + 1
-            const newTask = {id, title: value, isDone: false};
-            const newTasks = [newTask, ...tasks];
+            const newTasks = [...tasks, {id: tasks.length + 1, title: value, isDone: false}];
             setTasks(newTasks)
             setValue('')
         }
+    }
+    const changeStatusHandler = (taskId: number, isDone: boolean) => {
+        const newTasks = tasks.map((task) => task.id === taskId ? {...task, isDone} : task
+        )
+        setTasks(newTasks)
+    }
+    const deleteTaskHandler = (taskId: number) => {
+        const newTasks = tasks.filter((task) => task.id !== taskId)
+        setTasks(newTasks)
     }
 
     return (
@@ -45,13 +52,17 @@ export default function Index() {
                 {/*</HideKeyboard>*/}
             </Pressable>
             <View style={styles.action}>
-                <Button title={'Add Task'} onPress={addTask}/>
+                <Button title={'Add Task'} onPress={addTaskHandler}/>
             </View>
             <View style={[{width: 200}]}>
                 {tasks.map((task: Task) => {
                     return <View style={styles.section} key={task.id}>
-                        <Checkbox style={styles.checkbox} value={task.isDone}/>
+                        <Checkbox id={`${task.id}`} style={styles.checkbox} value={task.isDone}
+                                  onValueChange={(isDone) => {
+                                      changeStatusHandler(task.id, isDone)
+                                  }}/>
                         <Text>{task.title}</Text>
+                        <Button title={'x'} onPress={() => deleteTaskHandler(task.id)}/>
                     </View>
                 })}
             </View>
@@ -83,6 +94,8 @@ const styles = StyleSheet.create({
     section: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-between',
+        marginBottom: 3
     },
     checkbox: {
         margin: 8,
