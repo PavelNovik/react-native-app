@@ -17,6 +17,7 @@ export default function Index() {
         {id: 4, title: 'React', isDone: true},
         {id: 5, title: 'React Native', isDone: false},
     ]);
+    const [taskEditId, setTaskEditId] = useState<number>(0);
     const addTaskHandler = () => {
         if (value) {
             const newTasks = [...tasks, {id: tasks.length + 1, title: value, isDone: false}];
@@ -31,6 +32,11 @@ export default function Index() {
     }
     const deleteTaskHandler = (taskId: number) => {
         const newTasks = tasks.filter((task) => task.id !== taskId)
+        setTasks(newTasks)
+    }
+    const changeTaskTitleHandler = (taskId: number, title: string) => {
+        const newTasks = tasks.map((task) => task.id === taskId ? {...task, title} : task
+        )
         setTasks(newTasks)
     }
 
@@ -61,7 +67,11 @@ export default function Index() {
                                   onValueChange={(isDone) => {
                                       changeStatusHandler(task.id, isDone)
                                   }}/>
-                        <Text>{task.title}</Text>
+                        {taskEditId === task.id ?
+                            <TextInput value={task.title} onBlur={() => setTaskEditId(0)} onChangeText={(newTitle) => {
+                                changeTaskTitleHandler(task.id, newTitle)
+                            }}/> :
+                            <Text onPress={() => setTaskEditId(task.id)}>{task.title}</Text>}
                         <Button title={'x'} onPress={() => deleteTaskHandler(task.id)}/>
                     </View>
                 })}
