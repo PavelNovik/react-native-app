@@ -1,5 +1,5 @@
-import {Keyboard, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View} from "react-native";
-import {ReactElement, ReactNode, useState} from "react";
+import {Button, Keyboard, Pressable, StyleSheet, Text, TextInput, View} from "react-native";
+import {useState} from "react";
 import {Checkbox} from "expo-checkbox";
 
 type Task = {
@@ -17,7 +17,15 @@ export default function Index() {
         {id: 4, title: 'React', isDone: true},
         {id: 5, title: 'React Native', isDone: false},
     ]);
-
+    const addTask = () => {
+        if (value) {
+            const id = tasks.length + 1
+            const newTask = {id, title: value, isDone: false};
+            const newTasks = [newTask, ...tasks];
+            setTasks(newTasks)
+            setValue('')
+        }
+    }
 
     return (
         <View
@@ -25,15 +33,20 @@ export default function Index() {
         >
 
             <Text>Something in the way!</Text>
-            <HideKeyboard>
-                <View style={[{width: '100%', alignItems: "center"}]}>
-                    <TextInput style={[globalStyles.border, styles.input, {fontSize: 18,}]}
-                               placeholder={'Enter your name...'}
-                               placeholderTextColor={'black'}
-                               value={value}
-                               onChangeText={setValue}/>
-                </View>
-            </HideKeyboard>
+            <Pressable onPress={Keyboard.dismiss} style={[{width: '100%', alignItems: "center"}]}>
+                {/*<HideKeyboard>*/}
+                {/*    <View style={[{width: '100%', alignItems: "center"}]}>*/}
+                <TextInput style={[globalStyles.border, styles.input, {fontSize: 18,}]}
+                           placeholder={'Enter your name...'}
+                           placeholderTextColor={'black'}
+                           value={value}
+                           onChangeText={setValue}/>
+                {/*</View>*/}
+                {/*</HideKeyboard>*/}
+            </Pressable>
+            <View style={styles.action}>
+                <Button title={'Add Task'} onPress={addTask}/>
+            </View>
             <View style={[{width: 200}]}>
                 {tasks.map((task: Task) => {
                     return <View style={styles.section} key={task.id}>
@@ -48,9 +61,9 @@ export default function Index() {
     );
 }
 
-const HideKeyboard = ({children}: { children: ReactNode }): ReactElement => {
-    return <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>{children}</TouchableWithoutFeedback>
-}
+// const HideKeyboard = ({children}: { children: ReactNode }): ReactElement => {
+//     return <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>{children}</TouchableWithoutFeedback>
+// }
 
 const styles = StyleSheet.create({
     container: {
@@ -63,6 +76,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#f3bf98',
         width: 200,
         padding: 10,
+    },
+    action: {
+        margin: 5
     },
     section: {
         flexDirection: 'row',
