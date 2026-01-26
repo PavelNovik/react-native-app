@@ -1,6 +1,7 @@
 import {Button, Keyboard, Pressable, StyleSheet, Text, TextInput, View} from "react-native";
 import {useState} from "react";
 import {Checkbox} from "expo-checkbox";
+import Input from "@/app/components/input/input";
 
 type Task = {
     id: number;
@@ -38,6 +39,7 @@ export default function Index() {
         const newTasks = tasks.map((task) => task.id === taskId ? {...task, title} : task
         )
         setTasks(newTasks)
+        setTaskEditId(0)
     }
 
     return (
@@ -68,9 +70,10 @@ export default function Index() {
                                       changeStatusHandler(task.id, isDone)
                                   }}/>
                         {taskEditId === task.id ?
-                            <TextInput value={task.title} onBlur={() => setTaskEditId(0)} onChangeText={(newTitle) => {
-                                changeTaskTitleHandler(task.id, newTitle)
-                            }}/> :
+                            <Input title={task.title} taskId={task.id} changeTaskTitle={changeTaskTitleHandler}/> :
+                            // <TextInput value={task.title} onBlur={() => setTaskEditId(0)} onChangeText={(newTitle) => {
+                            //     changeTaskTitleHandler(task.id, newTitle)
+                            // }}/> :
                             <Text onPress={() => setTaskEditId(task.id)}>{task.title}</Text>}
                         <Button title={'x'} onPress={() => deleteTaskHandler(task.id)}/>
                     </View>
