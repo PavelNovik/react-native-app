@@ -1,5 +1,9 @@
 import {Stack} from "expo-router";
+import {Provider} from "react-redux";
+import {store} from "@/app/store/store";
 
 export default function RootLayout() {
-    return <Stack screenOptions={{headerShown: false}}/>;
+    return <Provider store={store}>
+        <Stack screenOptions={{headerShown: false}}/>
+    </Provider>;
 }
