@@ -47,7 +47,7 @@ export default function Index() {
             style={styles.container}
         >
 
-            <Text>Something in the way!</Text>
+            <Text style={[styles.text]}>Something in the way!</Text>
             <Pressable onPress={Keyboard.dismiss} style={[{width: '100%', alignItems: "center"}]}>
                 {/*<HideKeyboard>*/}
                 {/*    <View style={[{width: '100%', alignItems: "center"}]}>*/}
@@ -65,22 +65,24 @@ export default function Index() {
             <View style={[{width: 200}]}>
                 {tasks.map((task: Task) => {
                     return <View style={styles.section} key={task.id}>
-                        <Checkbox id={`${task.id}`} style={styles.checkbox} value={task.isDone}
+                        <Checkbox key={`${task.title}+${task.id}`} id={`${task.id}`} style={styles.checkbox}
+                                  value={task.isDone}
                                   onValueChange={(isDone) => {
                                       changeStatusHandler(task.id, isDone)
                                   }}/>
                         {taskEditId === task.id ?
-                            <Input title={task.title} taskId={task.id} changeTaskTitle={changeTaskTitleHandler}/> :
+                            <Input key={`${task.id}+${task.title}`} title={task.title} taskId={task.id}
+                                   changeTaskTitle={changeTaskTitleHandler}/> :
                             // <TextInput value={task.title} onBlur={() => setTaskEditId(0)} onChangeText={(newTitle) => {
                             //     changeTaskTitleHandler(task.id, newTitle)
                             // }}/> :
-                            <Text onPress={() => setTaskEditId(task.id)}>{task.title}</Text>}
+                            <Text style={[styles.text]} onPress={() => setTaskEditId(task.id)}>{task.title}</Text>}
                         <Button title={'x'} onPress={() => deleteTaskHandler(task.id)}/>
                     </View>
                 })}
             </View>
-            <Text>What the fuck!</Text>
-            <Text>The man who sold the world</Text>
+            <Text style={[styles.text]}>What the fuck!</Text>
+            <Text style={[styles.text]}>The man who sold the world</Text>
         </View>
     );
 }
@@ -92,10 +94,11 @@ export default function Index() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f8ff6a',
+        backgroundColor: '#0f0e17',
         justifyContent: "center",
         alignItems: "center",
     },
+    text: {color: '#fffffe'},
     input: {
         backgroundColor: '#f3bf98',
         width: 200,
