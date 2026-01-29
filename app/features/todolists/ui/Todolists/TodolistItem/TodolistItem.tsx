@@ -16,7 +16,7 @@ export const TodolistItem = ({todolist}: Props) => {
     }
 
     return (
-        <div>
+        <View>
             {/*<TodolistTitle todolist={todolist}/>*/}
             <View>
                 <Text>Todo title</Text>
@@ -31,6 +31,6 @@ export const TodolistItem = ({todolist}: Props) => {
                 <Text>FilterButtons</Text>
             </View>
             {/*<FilterButtons todolist={todolist}/>*/}
-        </div>
+        </View>
     )
 }
