@@ -1,8 +1,9 @@
 import {DomainTodolist} from "@/app/store/todolist-slice";
 import {useAppDispatch} from "@/app/hooks/useAppDispatch";
 import {createTaskTC} from "@/app/store/tasks-slice";
-import {Text, View} from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 import {Tasks} from "@/app/features/todolists/ui/Todolists/TodolistItem/Tasks/Tasks";
+import React from "react";
 
 type Props = {
     todolist: DomainTodolist
@@ -19,18 +20,22 @@ export const TodolistItem = ({todolist}: Props) => {
         <View>
             {/*<TodolistTitle todolist={todolist}/>*/}
             <View>
-                <Text>Todo title</Text>
+                <Text style={[styles.text]}>{todolist.title}</Text>
             </View>
             {/*<CreateItemForm onCreateItem={createTask} disabled={todolist.entityStatus === "loading"}/>*/}
             <View>
-                <Text>CreateItemForm</Text>
+                <Text style={[styles.text]}>CreateItemForm</Text>
             </View>
             <Tasks todolist={todolist}/>
 
             <View>
-                <Text>FilterButtons</Text>
+                <Text style={[styles.text]}>FilterButtons</Text>
             </View>
             {/*<FilterButtons todolist={todolist}/>*/}
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    text: {color: '#fffffe'},
+})
