@@ -2,9 +2,9 @@ import {DomainTodolist} from "@/app/store/todolist-slice";
 import {useAppSelector} from "@/app/hooks/useAppSelector";
 import {fetchTasksTC, selectTasks} from "@/app/store/tasks-slice";
 import {useAppDispatch} from "@/app/hooks/useAppDispatch";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {TaskStatus} from "@/app/enums/enums";
-import {View} from "react-native";
+import {Text, View} from "react-native";
 import {TaskItem} from "@/app/features/todolists/ui/Todolists/TodolistItem/Tasks/TaskItem/TaskItem";
 
 type Props = {
@@ -34,7 +34,7 @@ export const Tasks = ({todolist}: Props) => {
     return (
         <>
             {filteredTasks?.length === 0 ? (
-                <p>Тасок нет</p>
+                <Text style={{color: 'white'}}>Тасок нет</Text>
             ) : (
                 <View>{filteredTasks?.map((task) => <TaskItem key={task.id} task={task} todolist={todolist}/>)}</View>
             )}
