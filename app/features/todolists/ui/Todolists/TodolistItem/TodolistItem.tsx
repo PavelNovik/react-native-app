@@ -5,6 +5,7 @@ import {StyleSheet, Text, View} from "react-native";
 import {Tasks} from "@/app/features/todolists/ui/Todolists/TodolistItem/Tasks/Tasks";
 import React from "react";
 import {CreateItemForm} from "@/app/components/CreateItemForm/CreateItemForm";
+import {TodolistTitle} from "@/app/features/todolists/ui/Todolists/TodolistItem/TodolistTitle/TodolistTitle";
 
 type Props = {
     todolist: DomainTodolist
@@ -19,10 +20,10 @@ export const TodolistItem = ({todolist}: Props) => {
 
     return (
         <View>
-            {/*<TodolistTitle todolist={todolist}/>*/}
-            <View style={[{marginVertical: 10}]}>
-                <Text style={[styles.text]}>{todolist.title}</Text>
-            </View>
+            <TodolistTitle todolist={todolist}/>
+            {/*<View style={[{marginVertical: 10}]}>*/}
+            {/*    <Text style={[styles.text]}>{todolist.title}</Text>*/}
+            {/*</View>*/}
             <CreateItemForm onCreateItem={createTask} /* disabled={todolist.entityStatus === "loading"} *//>
 
             <Tasks todolist={todolist}/>
