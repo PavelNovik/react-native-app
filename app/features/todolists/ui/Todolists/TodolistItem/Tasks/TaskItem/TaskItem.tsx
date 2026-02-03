@@ -4,8 +4,9 @@ import {useAppDispatch} from "@/app/hooks/useAppDispatch";
 import {deleteTaskTC, updateTaskTC} from "@/app/store/tasks-slice";
 import React from "react";
 import {TaskStatus} from "@/app/enums/enums";
-import {Button, StyleSheet, Text, View} from "react-native";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {Checkbox} from "expo-checkbox";
+import {Ionicons} from "@expo/vector-icons";
 
 type Props = {
     task: DomainTask
@@ -39,11 +40,13 @@ export const TaskItem = ({task, todolist}: Props) => {
 
     return (
         <View style={[styles.section]}>
-            <Checkbox id={task.id} style={[styles.checkbox]}
+            <Checkbox color={'#a106fa'} id={task.id} style={[styles.checkbox]}
                       value={isTaskCompleted} disabled={disabled} onValueChange={(e) => changeTaskStatus(e)}/>
             {/*<EditableSpan value={task.title} onChange={changeTaskTitle} disabled={disabled}/>*/}
-            <Text style={[styles.text]}>{task.title}</Text>
-            <Button disabled={disabled} title={'x'} onPress={() => deleteTask()}/>
+            <Text style={[isTaskCompleted ? {...styles.text, opacity: 0.5} : styles.text]}>{task.title}</Text>
+            <TouchableOpacity>
+                <Ionicons name="trash-sharp" size={24} color="white" onPress={deleteTask}/>
+            </TouchableOpacity>
         </View>
     )
 }
