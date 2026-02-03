@@ -1,8 +1,8 @@
 export enum TaskStatus {
     New = 0,
-    InProgress = 1,
+    // InProgress = 1,
     Completed = 2,
-    Draft = 3,
+    // Draft = 3,
 }
 
 export enum TaskPriority {
