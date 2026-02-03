@@ -1,14 +1,22 @@
 import React from "react";
 import {ScrollView, StyleSheet} from "react-native";
 import {Todolists} from "@/app/features/todolists/ui/Todolists/Todolists";
+import {useAppDispatch} from "@/app/hooks/useAppDispatch";
+import {createTodolistTC} from "@/app/store/todolist-slice";
+import {CreateItemForm} from "@/app/components/CreateItemForm/CreateItemForm";
 
 export default function Index() {
+    const dispatch = useAppDispatch()
 
+    const createTodolist = (title: string) => {
+        dispatch(createTodolistTC(title))
+    }
 
     return (
         <ScrollView style={[styles.container]}
                     contentContainerStyle={[styles.content]}>
             {/*<TodoOld/>*/}
+            <CreateItemForm onCreateItem={createTodolist}/>
             <Todolists/>
         </ScrollView>
 
