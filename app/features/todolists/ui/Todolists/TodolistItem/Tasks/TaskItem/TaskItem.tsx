@@ -2,9 +2,10 @@ import {DomainTask} from "@/app/types/task-models";
 import {DomainTodolist} from "@/app/store/todolist-slice";
 import {useAppDispatch} from "@/app/hooks/useAppDispatch";
 import {deleteTaskTC, updateTaskTC} from "@/app/store/tasks-slice";
-import {ChangeEvent} from "react";
+import React from "react";
 import {TaskStatus} from "@/app/enums/enums";
-import {Text, View} from "react-native";
+import {Button, StyleSheet, Text, View} from "react-native";
+import {Checkbox} from "expo-checkbox";
 
 type Props = {
     task: DomainTask
@@ -18,13 +19,13 @@ export const TaskItem = ({task, todolist}: Props) => {
         dispatch(deleteTaskTC({todolistId: todolist.id, taskId: task.id}))
     }
 
-    const changeTaskStatus = (e: ChangeEvent<HTMLInputElement>) => {
-        const newStatusValue = e.currentTarget.checked
+    const changeTaskStatus = (e: boolean) => {
+        // const newStatusValue = e
         dispatch(
             updateTaskTC({
                 todolistId: todolist.id,
                 taskId: task.id,
-                domainModel: {status: newStatusValue ? TaskStatus.Completed : TaskStatus.New},
+                domainModel: {status: e ? TaskStatus.Completed : TaskStatus.New},
             }),
         )
     }
@@ -37,17 +38,24 @@ export const TaskItem = ({task, todolist}: Props) => {
     const disabled = todolist.entityStatus === "loading"
 
     return (
-        <View>
-            <View>
-                <Text>Checkbox</Text>
-                {/*<Checkbox checked={isTaskCompleted} onChange={changeTaskStatus} disabled={disabled}/>*/}
-                {/*<EditableSpan value={task.title} onChange={changeTaskTitle} disabled={disabled}/>*/}
-                <Text>{task.title}</Text>
-            </View>
-            <Text>Delete</Text>
-            {/*<IconButton onClick={deleteTask} disabled={disabled}>*/}
-            {/*    <DeleteIcon/>*/}
-            {/*</IconButton>*/}
+        <View style={[styles.section]}>
+            <Checkbox id={task.id} style={[styles.checkbox]}
+                      value={isTaskCompleted} disabled={disabled} onValueChange={(e) => changeTaskStatus(e)}/>
+            {/*<EditableSpan value={task.title} onChange={changeTaskTitle} disabled={disabled}/>*/}
+            <Text style={[styles.text]}>{task.title}</Text>
+            <Button disabled={disabled} title={'x'} onPress={() => deleteTask()}/>
         </View>
     )
 }
+const styles = StyleSheet.create({
+    text: {color: '#fffffe'},
+    checkbox: {
+        margin: 8,
+    },
+    section: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginBottom: 3
+    },
+})
