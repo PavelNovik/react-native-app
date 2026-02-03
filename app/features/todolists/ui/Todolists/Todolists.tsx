@@ -1,7 +1,7 @@
 import {fetchTodolistsTC, selectTodolists} from "@/app/store/todolist-slice";
 import {useAppSelector} from "@/app/hooks/useAppSelector";
 import {useAppDispatch} from "@/app/hooks/useAppDispatch";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {View} from "react-native";
 import {TodolistItem} from "@/app/features/todolists/ui/Todolists/TodolistItem/TodolistItem";
 
@@ -18,9 +18,9 @@ export const Todolists = () => {
         <>
             {todolists.map((todolist) => (
                 <View key={todolist.id}>
-                    <View>
-                        <TodolistItem todolist={todolist}/>
-                    </View>
+                    {/*<View>*/}
+                    <TodolistItem todolist={todolist}/>
+                    {/*</View>*/}
                 </View>
             ))}
         </>
