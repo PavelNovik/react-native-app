@@ -1,5 +1,5 @@
 import {Button, Keyboard, Pressable, StyleSheet, Text, TextInput, View} from "react-native";
-import {useState} from "react";
+import React, {useState} from "react";
 import {Checkbox} from "expo-checkbox";
 import Input from "@/app/components/input/input";
 
