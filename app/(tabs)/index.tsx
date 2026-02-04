@@ -5,6 +5,7 @@ import {useAppDispatch} from "@/app/hooks/useAppDispatch";
 import {createTodolistTC} from "@/app/store/todolist-slice";
 import {CreateItemForm} from "@/app/components/CreateItemForm/CreateItemForm";
 
+
 export default function Index() {
     const dispatch = useAppDispatch()
 
@@ -15,6 +16,7 @@ export default function Index() {
     return (
         <ScrollView style={[styles.container]}
                     contentContainerStyle={[styles.content]}>
+            {/*<Header/>*/}
             {/*<TodoOld/>*/}
             <CreateItemForm onCreateItem={createTodolist}/>
             <Todolists/>
@@ -27,6 +29,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#0f0e17',
+        paddingTop: 20
 
     },
     content: {
