@@ -17,7 +17,8 @@ export const Todolists = () => {
     return (
         <>
             {todolists.map((todolist) => (
-                <View style={[{marginVertical: 5, backgroundColor: "grey", padding: 10}]} key={todolist.id}>
+                <View style={[{marginVertical: 5, backgroundColor: "grey", padding: 10, borderRadius: 20}]}
+                      key={todolist.id}>
                     <TodolistItem todolist={todolist}/>
                 </View>
             ))}
