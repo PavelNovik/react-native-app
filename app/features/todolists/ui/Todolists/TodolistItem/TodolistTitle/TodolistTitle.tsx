@@ -23,7 +23,7 @@ export const TodolistTitle = ({todolist}: Props) => {
     }
 
     return (
-        <View>
+        <View style={[{flexDirection: "row", justifyContent: 'space-between', alignItems: 'center', marginBottom: 15}]}>
             <View>
                 <EditableSpan value={title} onChange={changeTodolistTitle}/>
             </View>
