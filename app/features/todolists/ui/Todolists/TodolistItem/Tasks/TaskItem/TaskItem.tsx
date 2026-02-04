@@ -4,9 +4,10 @@ import {useAppDispatch} from "@/app/hooks/useAppDispatch";
 import {deleteTaskTC, updateTaskTC} from "@/app/store/tasks-slice";
 import React from "react";
 import {TaskStatus} from "@/app/enums/enums";
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {StyleSheet, TouchableOpacity, View} from "react-native";
 import {Checkbox} from "expo-checkbox";
 import {Ionicons} from "@expo/vector-icons";
+import {EditableSpan} from "@/app/components/EditableSpan/EditableSpan";
 
 type Props = {
     task: DomainTask
@@ -40,10 +41,13 @@ export const TaskItem = ({task, todolist}: Props) => {
 
     return (
         <View style={[styles.section]}>
-            <Checkbox color={'#a106fa'} id={task.id} style={[styles.checkbox]}
-                      value={isTaskCompleted} disabled={disabled} onValueChange={(e) => changeTaskStatus(e)}/>
-            {/*<EditableSpan value={task.title} onChange={changeTaskTitle} disabled={disabled}/>*/}
-            <Text style={[isTaskCompleted ? {...styles.text, opacity: 0.5} : styles.text]}>{task.title}</Text>
+            <View style={[{flexDirection: 'row', alignItems: 'center'}]}>
+                <Checkbox color={'#a106fa'} id={task.id} style={[styles.checkbox]}
+                          value={isTaskCompleted} disabled={disabled} onValueChange={(e) => changeTaskStatus(e)}/>
+                <EditableSpan isTaskCompleted={isTaskCompleted} value={task.title} onChange={changeTaskTitle}
+                              disabled={disabled}/>
+            </View>
+            {/*<Text style={[isTaskCompleted ? {...styles.text, opacity: 0.5} : styles.text]}>{task.title}</Text>*/}
             <TouchableOpacity>
                 <Ionicons name="trash-sharp" size={24} color="white" onPress={deleteTask}/>
             </TouchableOpacity>
