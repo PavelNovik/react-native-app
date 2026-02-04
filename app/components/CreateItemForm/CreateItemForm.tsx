@@ -28,7 +28,7 @@ export const CreateItemForm = ({onCreateItem, disabled}: Props) => {
 
 
     return (
-        <View style={[{flexDirection: "row", alignItems: "center", justifyContent: "center"}]}>
+        <View style={[{flexDirection: "row", alignItems: "center", justifyContent: "center", marginBottom: 10}]}>
             <TextInput style={[styles.input]}
                        value={title}
                        onChangeText={changeTitleHandler}
