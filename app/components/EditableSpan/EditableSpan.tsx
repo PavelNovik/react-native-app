@@ -5,9 +5,10 @@ type Props = {
     value: string
     onChange: (title: string) => void
     disabled?: boolean
+    isTaskCompleted?: boolean
 }
 
-export const EditableSpan = ({value, onChange, disabled}: Props) => {
+export const EditableSpan = ({value, onChange, disabled, isTaskCompleted}: Props) => {
     const [title, setTitle] = useState(value)
     const [isEditMode, setIsEditMode] = useState(false)
 
@@ -35,7 +36,11 @@ export const EditableSpan = ({value, onChange, disabled}: Props) => {
 
                 />
             ) : (
-                <Text style={[styles.text]} onPress={turnOnEditMode}>{value}</Text>
+                <Text style={[isTaskCompleted ? {
+                    ...styles.text,
+                    opacity: 0.5,
+                    textDecorationLine: "line-through"
+                } : {...styles.text}]} onPress={turnOnEditMode}>{value}</Text>
             )}
         </>
     )
