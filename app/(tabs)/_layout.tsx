@@ -1,5 +1,5 @@
 import {Tabs} from 'expo-router';
-import {AntDesign, Fontisto} from "@expo/vector-icons";
+import {AntDesign, FontAwesome, Fontisto} from "@expo/vector-icons";
 
 export default function TabLayout() {
     return (
@@ -17,6 +17,13 @@ export default function TabLayout() {
                 options={{
                     title: 'Old Todo',
                     tabBarIcon: ({color}) => <AntDesign name="android" size={24} color={color}/>
+                }}
+            />
+            <Tabs.Screen
+                name="learning"
+                options={{
+                    title: 'Learning',
+                    tabBarIcon: ({color}) => <FontAwesome name="book" size={24} color={color}/>,
                 }}
             />
         </Tabs>
