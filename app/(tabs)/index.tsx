@@ -1,12 +1,15 @@
 import React from "react";
-import {ScrollView, StyleSheet} from "react-native";
+import {Pressable, ScrollView, StyleSheet, Text, View} from "react-native";
 import {Todolists} from "@/app/features/todolists/ui/Todolists/Todolists";
 import {useAppDispatch} from "@/app/hooks/useAppDispatch";
 import {createTodolistTC} from "@/app/store/todolist-slice";
 import {CreateItemForm} from "@/app/components/CreateItemForm/CreateItemForm";
+import {useRouter} from "expo-router";
+import {SafeAreaView} from "react-native-safe-area-context";
 
 
-export default function Index() {
+export default function IndexTodo() {
+    const router = useRouter();
     const dispatch = useAppDispatch()
 
     const createTodolist = (title: string) => {
@@ -16,12 +19,18 @@ export default function Index() {
     return (
         <ScrollView style={[styles.container]}
                     contentContainerStyle={[styles.content]}>
-            {/*<Header/>*/}
-            {/*<TodoOld/>*/}
-            <CreateItemForm onCreateItem={createTodolist}/>
-            <Todolists/>
+            <SafeAreaView style={{flex: 1}}>
+                {/*<Header/>*/}
+                {/*<TodoOld/>*/}
+                <View>
+                    <Pressable onPress={() => router.push("/modal")}>
+                        <Text style={[{color: 'white'}]}>Open modal</Text>
+                    </Pressable>
+                </View>
+                <CreateItemForm onCreateItem={createTodolist}/>
+                <Todolists/>
+            </SafeAreaView>
         </ScrollView>
-
     );
 }
 
