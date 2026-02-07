@@ -32,8 +32,9 @@ const User = ({dataUser}: UserPropsType) => (
     <View style={styles.item}>
         <View>
             <Image
-                style={styles.tinyLogo}
+                style={[{width: 200, height: 200}, styles.tinyLogo]}
                 source={{uri: `${dataUser.avatar}`}}
+                resizeMode="cover"
             />
         </View>
 
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
     tinyLogo: {
         width: 50,
         height: 50,
-        borderRadius: '50%'
+        borderRadius: 50
     },
     logo: {
         width: 66,
