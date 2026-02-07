@@ -12,14 +12,18 @@ export default function UserDetails() {
     return <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
         <Stack.Screen
             options={{
-                title: `User id:${id}`,
+                title: `User: ${userData?.firstName} ${userData?.lastName}`,
                 headerStyle: {backgroundColor: 'lightblue'},
             }}
         />
         <Text>Details screen for userId = {id}</Text>
         <Image
-            style={styles.logo}
+            style={[{width: 200, height: 200}, styles.logo]}
             source={{uri: `${userData!.avatar}`}}
+            resizeMode="cover"
+            onError={(e) => {
+                console.log("IMAGE ERROR", e.nativeEvent);
+            }}
         />
         <View style={{flexDirection: 'row', gap: 10}}>
             <Text>{userData?.firstName}</Text>
@@ -35,8 +39,8 @@ export default function UserDetails() {
 
 const styles = StyleSheet.create({
     logo: {
-        width: 100,
-        height: 100,
-        borderRadius: '50%'
+        // width: 100,
+        // height: 100,
+        borderRadius: 500
     }
 })
