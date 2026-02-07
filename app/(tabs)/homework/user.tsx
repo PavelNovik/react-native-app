@@ -1,5 +1,5 @@
 import {Button, Image, StyleSheet, Text, View} from "react-native";
-import {router, useLocalSearchParams} from "expo-router";
+import {router, Stack, useLocalSearchParams} from "expo-router";
 import {fakeDataUser} from "@/app/data/fackeDataUser";
 import React from "react";
 
@@ -10,6 +10,12 @@ export default function UserDetails() {
     }>()
     const userData = fakeDataUser.find(u => u.id === +id)
     return <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <Stack.Screen
+            options={{
+                title: `User id:${id}`,
+                headerStyle: {backgroundColor: 'lightblue'},
+            }}
+        />
         <Text>Details screen for userId = {id}</Text>
         <Image
             style={styles.logo}
