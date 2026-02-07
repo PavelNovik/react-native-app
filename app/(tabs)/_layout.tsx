@@ -20,12 +20,21 @@ export default function TabLayout() {
                 }}
             />
             <Tabs.Screen
+                name="homework"
+                options={{
+                    title: 'Homework',
+                    tabBarIcon: ({color}) =>
+                        <Fontisto name="home" size={24} color={color}/>,
+                }}
+            />
+            <Tabs.Screen
                 name="learning"
                 options={{
                     title: 'Learning',
                     tabBarIcon: ({color}) => <FontAwesome name="book" size={24} color={color}/>,
                 }}
             />
+
         </Tabs>
     );
 }
