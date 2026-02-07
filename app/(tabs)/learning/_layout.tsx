@@ -1,5 +1,5 @@
 import {Stack} from "expo-router";
 
 export default function LearningLayout() {
-    return <Stack/>;
+    return <Stack screenOptions={{title: 'Details'}}/>;
 }
