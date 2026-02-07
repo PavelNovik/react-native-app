@@ -99,7 +99,7 @@ export const fakeDataUser: FakeDataUserType[] = [{
         id: 8,
         firstName: 'John',
         lastName: 'Doe',
-        avatar: 'https://icons-for-free.com/iff/png/256/avatar-1320568024619304547.png',
+        avatar: 'https://img.icons8.com/?size=100&id=42344&format=png&color=000000',
         location: {
             country: 'Spain',
             city: 'Barcelona'
@@ -111,7 +111,7 @@ export const fakeDataUser: FakeDataUserType[] = [{
         id: 9,
         firstName: 'John',
         lastName: 'Doe',
-        avatar: 'https://icons-for-free.com/iff/png/256/avatar-1320568024619304547.png',
+        avatar: 'https://img.icons8.com/?size=100&id=E2LI0GQ7_ToC&format=png&color=000000',
         location: {
             country: 'Spain',
             city: 'Barcelona'
@@ -123,7 +123,7 @@ export const fakeDataUser: FakeDataUserType[] = [{
         id: 10,
         firstName: 'John',
         lastName: 'Doe',
-        avatar: 'https://icons-for-free.com/iff/png/256/avatar-1320568024619304547.png',
+        avatar: 'https://img.icons8.com/?size=100&id=91243&format=png&color=000000',
         location: {
             country: 'Spain',
             city: 'Barcelona'
@@ -135,7 +135,7 @@ export const fakeDataUser: FakeDataUserType[] = [{
         id: 11,
         firstName: 'John',
         lastName: 'Doe',
-        avatar: 'https://icons-for-free.com/iff/png/256/avatar-1320568024619304547.png',
+        avatar: 'https://img.icons8.com/?size=100&id=7819&format=png&color=000000',
         location: {
             country: 'Spain',
             city: 'Barcelona'
@@ -147,7 +147,7 @@ export const fakeDataUser: FakeDataUserType[] = [{
         id: 12,
         firstName: 'John',
         lastName: 'Doe',
-        avatar: 'https://icons-for-free.com/iff/png/256/avatar-1320568024619304547.png',
+        avatar: 'https://img.icons8.com/?size=100&id=23309&format=png&color=000000',
         location: {
             country: 'Spain',
             city: 'Barcelona'
